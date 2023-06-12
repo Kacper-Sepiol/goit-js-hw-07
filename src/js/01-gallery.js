@@ -3,32 +3,29 @@ import { galleryItems } from "./gallery-items.js";
 
 const listImg = document.querySelector(".gallery");
 
-let showImg;
+const createItems = galleryItems
+    .map((item) => {
+        return `<div class="gallery__item">
+        <a class="gallery__link" href="${item.original}">
+        <img class="gallery__image" src="${item.preview}" data-source="${item.original}" alt="${item.description}" />
+        </a>
+        </div>`;
+    })
+    .join("");
 
-galleryItems.forEach((element) => {
-    const listImgElement = document.createElement("li");
-    const divListImg = document.createElement("div");
-    const imgElement = document.createElement("img");
-    const linkListImg = document.createElement("a");
-    divListImg.classList.add("gallery__item");
+listImg.innerHTML = createItems;
 
-    linkListImg.classList.add("gallery__link");
-    linkListImg.setAttribute("href", element.original);
+const imgPreview = (event) => {
+    event.preventDefault();
 
-    imgElement.setAttribute("data-src", element.original);
-    imgElement.setAttribute("src", element.preview);
-    imgElement.setAttribute("alt", element.description);
-    imgElement.classList.add("gallery__image");
-    showImg = basicLightbox.create(imgElement);
+    if (event.target.classList.contains("gallery")) return;
+    const source = event.target.dataset.source;
 
-    listImg.append(listImgElement);
-    listImgElement.append(divListImg);
-    divListImg.append(linkListImg);
-    linkListImg.append(imgElement);
-});
+    const instance = basicLightbox.create(`<img src="${source}">`);
 
-console.log(galleryItems);
+    instance.show();
+};
+
+listImg.addEventListener("click", imgPreview);
 
 console.log(listImg);
-
-imgElement.addEventListener("click", () => {});
