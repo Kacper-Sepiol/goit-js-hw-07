@@ -1,15 +1,15 @@
 import { galleryItems } from "./gallery-items.js";
 // Change code below this line
-import * as basicLightbox from "basiclightbox";
 
 const listImg = document.querySelector(".gallery");
+
+let showImg;
 
 galleryItems.forEach((element) => {
     const listImgElement = document.createElement("li");
     const divListImg = document.createElement("div");
-    const linkListImg = document.createElement("a");
     const imgElement = document.createElement("img");
-
+    const linkListImg = document.createElement("a");
     divListImg.classList.add("gallery__item");
 
     linkListImg.classList.add("gallery__link");
@@ -19,6 +19,7 @@ galleryItems.forEach((element) => {
     imgElement.setAttribute("src", element.preview);
     imgElement.setAttribute("alt", element.description);
     imgElement.classList.add("gallery__image");
+    showImg = basicLightbox.create(imgElement);
 
     listImg.append(listImgElement);
     listImgElement.append(divListImg);
@@ -29,3 +30,5 @@ galleryItems.forEach((element) => {
 console.log(galleryItems);
 
 console.log(listImg);
+
+imgElement.addEventListener("click", () => {});
