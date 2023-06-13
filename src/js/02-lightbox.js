@@ -5,15 +5,20 @@ const listImg = document.querySelector(".gallery");
 
 const createItems = galleryItems
     .map((item) => {
-        return `
+        return `<li>
         <a class="gallery__item" href="${item.original}">
         <img class="gallery__image" src="${item.preview}" alt="${item.description}" />
-        </a>`;
+        </a>
+        </li>`;
     })
     .join("");
 
 listImg.innerHTML = createItems;
 
-var lightbox = new SimpleLightbox(".gallery");
+const lightBox = new SimpleLightbox(".gallery a", {
+    captions: true,
+    captionDelay: 250,
+    captionPosition: "bottom",
+});
 
-console.log(galleryItems);
+console.log(listImg);
