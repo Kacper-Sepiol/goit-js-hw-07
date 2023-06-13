@@ -27,5 +27,3 @@ const imgPreview = (event) => {
 };
 
 listImg.addEventListener("click", imgPreview);
-
-console.log(listImg);
