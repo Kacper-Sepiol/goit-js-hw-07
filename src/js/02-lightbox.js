@@ -20,5 +20,3 @@ const lightBox = new SimpleLightbox(".gallery a", {
     captionDelay: 250,
     captionPosition: "bottom",
 });
-
-console.log(listImg);
